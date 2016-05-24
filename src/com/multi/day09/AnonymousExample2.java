@@ -4,6 +4,7 @@ interface RemoteControl {
 	void turnOn();
 
 	void turnOff();
+	
 }
 
 public class AnonymousExample2 {
@@ -14,7 +15,6 @@ public class AnonymousExample2 {
 
 		// new로 생성하면서 재정의하면 사용가능
 		RemoteControl tv = new RemoteControl() {
-
 			@Override
 			public void turnOn() {
 				System.out.println("tv trunOn");
@@ -63,5 +63,6 @@ public class AnonymousExample2 {
 	public static void work(RemoteControl remoteControl) {
 		remoteControl.turnOn();
 		remoteControl.turnOff();
+		
 	}
 }

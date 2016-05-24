@@ -46,7 +46,7 @@ public class OuterClass {
 
 	public static void main(String[] args) {
 		int localVar = 600;
-		// localVar = 700; // localClass에서 변수를 사용하려면 상수여야한다, final(생략) , 값 변경불가
+		//localVar = 700; // localClass에서 변수를 사용하려면 상수여야한다, final(생략) , 값 변경불가
 		args[0] = "100";
 
 		class LocalClass {

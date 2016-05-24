@@ -1,6 +1,7 @@
 package com.multi.day04;
 
 public class Account {
+	
 	// 1.멤버변수
 	private final String accNo; // 계좌번호 변경하면 안됨
 	private int balance; // 잔액을 임의로 변경하면 안됨
