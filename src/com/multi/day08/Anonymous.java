@@ -11,20 +11,12 @@ public class Anonymous {
 
 	void method1() {
 
-		new Vehicle() {
-			
-			@Override
-			public void run() {
-				System.out.println("승용차가 달립니다.");
-			}
-		}.run();
-		
-		/*Vehicle localVar = new Vehicle() {
+		Vehicle localVar = new Vehicle() {
 			public void run() {
 				System.out.println("승용차가 달립니다.");
 			}
 		};
-		localVar.run();*/
+		localVar.run();
 	}
 
 	void method2(Vehicle v) {
