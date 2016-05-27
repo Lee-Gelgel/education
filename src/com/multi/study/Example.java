@@ -3,7 +3,7 @@ public class Example {
 	public static void main(String args[]) {
 		long startTime = System.currentTimeMillis();
 		
-		int lineMax=7;
+		int lineMax=21;
 		int line = 0;
 		int print = 0;
 		int printStart, printEnd;

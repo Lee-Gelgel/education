@@ -1,8 +1,9 @@
 package com.multi.day11.thread;
 
 class WorkObject {
-	public synchronized void methodA(int i) {
-		if (i == 10){notify(); return;}
+	static int cnt = 0;
+	public synchronized void methodA() {
+		while(cnt++==10){notify();return;}
 			System.out.println("Thread의 methodA() 작업 실행");
 			notify();
 			try {
@@ -40,9 +41,9 @@ class ThreadAA extends Thread {
 	@Override
 	public void run() {
 		for (int i = 0; i < 10; i++) {
-			workObject.methodA(i);
+			workObject.methodA();
 		}
-		workObject.methodA(10);
+		workObject.methodA();
 	}
 }
 
