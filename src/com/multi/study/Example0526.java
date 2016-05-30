@@ -1,5 +1,5 @@
 package com.multi.study;
-public class Example {
+public class Example0526 {
 	public static void main(String args[]) {
 		long startTime = System.currentTimeMillis();
 		
