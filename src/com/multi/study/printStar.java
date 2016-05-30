@@ -1,9 +1,9 @@
 package com.multi.study;
-public class Example0526 {
+public class printStar {
 	public static void main(String args[]) {
 		long startTime = System.currentTimeMillis();
 		
-		int lineMax=21;
+		int lineMax=7;
 		int line = 0;
 		int print = 0;
 		int printStart, printEnd;
