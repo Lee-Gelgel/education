@@ -1,0 +1,5 @@
+addBoard=insert into board(seq, title, writer, content) values(?, ?, ?, ?)
+updateBoard=update board set title=?, content=? where seq=?
+deleteBoard=delete board where seq=?
+getBoard=select * from board where seq=?
+getBoardList=select * from board order by seq desc
