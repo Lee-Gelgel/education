@@ -9,7 +9,6 @@ public class ServerExample {
 		ServerSocket serverSocket = null;
 		Socket socket = null;
 		try {
-			while(true){
 			serverSocket = new ServerSocket(5001);
 			System.out.println("서버가 연결기다림...");
 			socket = serverSocket.accept(); // 클라이언트 연결 수락
@@ -21,7 +20,6 @@ public class ServerExample {
 			ReceiverThread receiver = new ReceiverThread(socket);
 			sender.start();
 			receiver.start();
-			}
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
