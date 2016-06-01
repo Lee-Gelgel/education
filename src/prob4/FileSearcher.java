@@ -26,6 +26,7 @@ public class FileSearcher {
 				vector.add(data);
 			}
 		}
+		br.close();
 		return vector;
 	}
 }

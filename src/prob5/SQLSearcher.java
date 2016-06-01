@@ -33,6 +33,7 @@ public class SQLSearcher {
 			}
 			map.put(key, value);
 		}
+		br.close();
 		return map;
 	}
 
