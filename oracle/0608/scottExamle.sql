@@ -52,3 +52,13 @@ where emp.sal between salgrade.losal and salgrade.hisal
 select emp.ename, emp.sal, salgrade.grade
 from emp join salgrade
 on(emp.sal between salgrade.losal and salgrade.hisal )
+
+select * from emp
+select * from dept
+
+select e.ename, d.dname, d.loc
+from emp e, dept d
+where e.deptno(+) = d.deptno
+
+select e.ename, d.dname, d.loc
+from emp e right join dept d on (e.deptno = d.deptno)

@@ -469,7 +469,11 @@ SELECT emp.employee_id, emp.first_name,
   FROM employees emp, departments dep
  WHERE emp.department_id <> dep.department_id;
 
+select * from departments
+order by location_id desc
 
+ 
+ 
 SELECT emp.employee_id, emp.first_name
   FROM employees emp
  WHERE emp.department_id NOT IN 
@@ -509,11 +513,20 @@ SELECT emp.employee_id,
        emp.first_name,
        emp.department_id, 
        dep.department_name
-  FROM employees emp, departments dep
+  FROM employees emp , departments dep
  WHERE emp.department_id = dep.department_id (+)
 ORDER BY emp.department_id;
-
-
+----------------------------------------------------
+SELECT emp.employee_id,
+       emp.first_name,
+       emp.department_id, 
+       dep.department_name
+  FROM employees emp
+  		full join departments dep on(emp.department_id = dep.department_id)
+  		left join departments dep on(emp.department_id = dep.department_id)
+  		right join departments dep on(emp.department_id = dep.department_id)
+ORDER BY emp.department_id;
+----------------------------------------------------
 SELECT emp.employee_id,
        emp.first_name,
        emp.department_id, 
@@ -523,8 +536,7 @@ SELECT emp.employee_id,
  WHERE emp.department_id = dep.department_id(+)
    AND dep.location_id = loc.location_id
  ORDER BY emp.department_id;
-
-
+----------------------------------------------------
 SELECT emp.employee_id,
        emp.first_name,
        dep.department_name,
@@ -535,7 +547,18 @@ SELECT emp.employee_id,
  WHERE emp.department_id = dep.department_id(+)
    AND dep.location_id    = loc.location_id(+)
  ORDER BY emp.department_id;
-
+----------------------------------------------------
+select e.employee_id, e.first_name, j.job_id, j.start_date
+from job_history j, employees e
+where e.employee_id = j.employee_id(+)
+----------------------------------------------------
+ SELECT emp.employee_id,
+       emp.first_name,
+       emp.department_id, 
+       dep.department_name
+  FROM employees emp left join departments dep on (emp.department_id = dep.department_id)
+  					 left join locations loc on (dep.location_id = loc.location_id)
+ ORDER BY emp.department_id;
 
 SELECT *
   FROM job_history;
@@ -710,6 +733,13 @@ SELECT emp.employee_id, emp.first_name, dep.department_name
 -- 크로스 조인
 SELECT *
   FROM employees CROSS JOIN departments;
+  
+SELECT count(*)
+  FROM employees CROSS JOIN departments;
+  
+SELECT *
+  FROM employees CROSS JOIN departments
+  order by employee_id asc  
 
 -- ANSI 외부조인
 SELECT Jhis.employee_id, emp.first_name

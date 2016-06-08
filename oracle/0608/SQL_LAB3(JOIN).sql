@@ -43,16 +43,17 @@ where e.department_id = d.department_id
 단, 부서가 없는 직원이 있다면 그 직원정보도 출력결과에 포함시킨다.
 select e.first_name,to_char(e.hire_date,'yyyy-mm-dd'), d.department_name
 from employees e, departments d
-where e.department_id = d.department_id
-
-or e.department_id is null 
+where e.department_id = d.department_id(+)
 
 
 7. 직원의 이름과 직책(job_title)을 출력하시오.
 단, 사용되지 않는 직책이 있다면 그 직책정보도 출력결과에 포함시키시오.
 select e.first_name, j.job_title
-from employees e, jobs j
-where e.job_id = j.job_id
+from employees e , jobs j 
+where e.job_id(+) = j.job_id
 
+
+select e.first_name, j.job_title
+from employees e right join jobs j on(e.job_id = j.job_id)
 
 
