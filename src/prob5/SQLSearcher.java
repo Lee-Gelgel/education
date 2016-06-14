@@ -20,18 +20,20 @@ public class SQLSearcher {
 		String data;
 		Map<String, String> map = new HashMap<String, String>();
 		while ((data = br.readLine()) != null) {
-			String[] dataSplit = data.split("=");
-			String key = dataSplit[0];
-			String value = "";
-			for (int i = 1; i < dataSplit.length; i++) {
-
-				if (i > 1) {
-					value += "=" + dataSplit[i];
-				} else {
-					value += dataSplit[i];
-				}
-			}
-			map.put(key, value);
+			String[] dataSplit = data.split("=", 2);
+			map.put(dataSplit[0], dataSplit[1]);
+//			String[] dataSplit = data.split("=");
+//			String key = dataSplit[0];
+//			String value = "";
+//			for (int i = 1; i < dataSplit.length; i++) {
+//
+//				if (i > 1) {
+//					value += "=" + dataSplit[i];
+//				} else {
+//					value += dataSplit[i];
+//				}
+//			}
+//			map.put(key, value);
 		}
 		br.close();
 		return map;

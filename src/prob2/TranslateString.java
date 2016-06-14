@@ -10,7 +10,9 @@ public class TranslateString {
 		String[] arrStr = str.split(" ");
 		String result = "";
 		for (int i = 0; i < arrStr.length; i++) {
-			result += arrStr[i].substring(0, 1).toUpperCase() + arrStr[i].substring(1, arrStr[i].length()).toLowerCase()+" ";
+			//result += arrStr[i].substring(0, 1).toUpperCase() + arrStr[i].substring(1, arrStr[i].length()).toLowerCase()+" ";
+			
+			result = Character.toUpperCase(arrStr[i].charAt(0)) + arrStr[i].substring(1);
 		}
 		return result.trim();
 	}
