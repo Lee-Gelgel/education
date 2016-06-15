@@ -1,0 +1,3 @@
+select a.index_name, a.table_name,  b.column_name, b.column_position 
+from user_indexes a, user_ind_columns b
+where a.index_name = b.index_name;

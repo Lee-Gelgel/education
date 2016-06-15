@@ -1,3 +1,16 @@
+select a.index_name, a.table_name,  b.column_name, b.column_position 
+from user_indexes a, user_ind_columns b
+where a.index_name = b.index_name
+and a.table_name = 'EMPIDXTEST'
+
+select *
+from user_objects
+where object_type='TABLE'; 
+
+
+
+
+
 Create table empidxtest As select *  from employees;
 
 select *  from empidxtest
@@ -15,6 +28,8 @@ insert into empidxtest
 (EMPLOYEE_ID,FIRST_NAME,LAST_NAME,EMAIL, hire_date, job_id)
 values(1,'aa','b','c', sysdate,'AD_VP');
 
+commit
+
 **인덱스 없을때와 있을때의 시간차이 알아보기 (set timing on) 
 Select * from empidxtest where FIRST_NAME='aa';
 
@@ -26,7 +41,8 @@ Select * from empidxtest where FIRST_NAME='aa';
 **인덱스 정보 조회
 select   a.index_name, a.table_name,  b.column_name, 	b.column_position 
 from user_indexes a, user_ind_columns b
-where a.index_name = b.index_name;
+where a.index_name = b.index_name
+and a.table_name = 'EMPIDXTEST';
 
 
 

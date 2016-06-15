@@ -305,10 +305,25 @@ CREATE INDEX "HR"."EMP_NAME_IX" ON "HR"."EMPLOYEES" ("LAST_NAME", "FIRST_NAME");
 
 
 --뷰
+select * from user_objects
+where object_type = 'VIEW'
+
+select * from user_views
+
+drop view deptemp_avg_view;
+
+create view deptemp_avg_view
+as
+select department_id, avg(salary) avgsal, max(salary) maxsal
+from employees
+group by department_id
+
 
 SELECT first_name, last_name, email, hire_date
 FROM employees
 WHERE department_id = 20 ;
+
+
 
 CREATE VIEW v_emp1 AS
 SELECT first_name, last_name, email, hire_date
@@ -318,12 +333,17 @@ WHERE department_id = 20;
 SELECT *
 FROM v_emp1;
 
+update v_emp1
+set first_name = 'Pat'
+where first_name = 'gelgel';
+
+
 DESC v_emp1;
 
 CREATE OR REPLACE VIEW v_emp1 AS
 SELECT first_name, last_name, email, hire_date
 FROM employees
-WHERE department_id  IN (20,30);
+WHERE department_id  IN (20, 30);
 
 SELECT *
 FROM v_emp1;
@@ -333,13 +353,16 @@ CREATE OR REPLACE VIEW v_emp_from_table AS
 SELECT first_name, last_name, email, hire_date
 FROM EMPLOYEES
 WHERE department_id IN (20, 30)
-   AND hire_date < TO_DATE('1998-01-01');
+   AND hire_date < TO_DATE('2008-01-01');
 
+   select * from v_emp_from_table
 
 CREATE OR REPLACE VIEW v_emp_from_view AS
 SELECT first_name, last_name, email, hire_date
 FROM v_emp1
- WHERE hire_date < TO_DATE('1998-01-01');
+ WHERE hire_date < TO_DATE('2005-01-01');
+ 
+ select * from v_emp_from_view
 
 
 CREATE OR REPLACE VIEW v_emp1_read_only AS
@@ -348,6 +371,7 @@ SELECT first_name, last_name, email, hire_date
 WHERE department_id IN (20,30)
 WITH READ ONLY;
 
+select * from v_emp1_read_only
 
 CREATE OR REPLACE VIEW v_emp1_update AS
 SELECT first_name, last_name, email, hire_date
@@ -359,7 +383,6 @@ UPDATE v_emp1_update
     SET last_name = '에디슨' 
  WHERE first_name = '마이클' ;
 
-
 UPDATE v_emp1_read_only
 SET last_name = '하트쉬타인'
 WHERE last_name = '마이클' ;
@@ -367,6 +390,13 @@ WHERE last_name = '마이클' ;
 
 INSERT INTO v_emp1_update
 VALUES('길동','홍','HGD', SYSDATE);
+
+
+CREATE OR REPLACE VIEW v_emp1_update AS
+SELECT employee_id, first_name, email, hire_date, job_id
+  FROM employees
+WHERE department_id IN (20,30);
+
 
 
 CREATE OR REPLACE VIEW v_emp1_update AS
@@ -398,6 +428,7 @@ SELECT employee_id, first_name, last_name, email, hire_date, job_id, department_
 WHERE department_id IN (20,30)
 WITH CHECK OPTION;
 
+--부서id 20,30번 인데 입력은 부서id 40 check option에 의해 입력이 안됨 
 INSERT INTO V_EMP1_UPDATE
 VALUES(778, '중상','대', 'DJS', SYSDATE, 'FI_MGR', 40);
 
@@ -412,7 +443,10 @@ a.department_id emp_department,
  WHERE a.department_id = b.department_id
    AND b.department_id IN (20,30);
 
-
+--1(부서) : N(직원)
+--join한 경우
+--직원은 view를 통해 dml가능
+--부서는 불가
 INSERT INTO v_emp1_dual_update 
 ( employee_id, first_name, last_name, email, hire_date, job_id, emp_department )
 VALUES(779, '인귀','설', 'SIK', SYSDATE, 'FI_MGR', '30');
@@ -447,7 +481,12 @@ WHERE a.department_id = k.department_id;
 
 
 -- 시노님
+--PUBLIC 은 dba 만 가능
 CREATE OR REPLACE PUBLIC SYNONYM pub_emp FOR hr.employees;
+--
+CREATE OR REPLACE SYNONYM pub_emp FOR hr.employees;
+
+select * from pub_emp
 
 SELECT OWNER, SYNONYM_NAME, TABLE_OWNER, TABLE_NAME
   FROM DBA_SYNONYMS
@@ -468,7 +507,7 @@ WHERE object_name = 'DUAL';
 SELECT MAX(employee_id)
 FROM employees;
 
-CREATE SEQUENCE "HR"."EMPLOYEES_SEQ"
+CREATE SEQUENCE emp_seq
   MINVALUE 1 
 MAXVALUE 999999999999999999999999999 
 INCREMENT BY 1 
@@ -481,17 +520,34 @@ DELETE employees
  WHERE employee_id = 777;
 
 INSERT INTO EMPLOYEES (employee_id, first_name, last_name, email, hire_date, job_id, department_id)
-VALUES (EMPLOYEES_SEQ.NEXTVAL, '조영','대', 'DJY', SYSDATE, 'IT_PROG', 30);
+VALUES (emp_seq.NEXTVAL, '조영','대', 'DJY', SYSDATE, 'IT_PROG', 30);
 
 
 SELECT employee_id, first_name, last_name
    FROM employees
 WHERE last_name = '대';
 
-SELECT EMPLOYEES_SEQ.CURRVAL
+SELECT emp_seq.CURRVAL
    FROM DUAL;
 
-SELECT EMPLOYEES_SEQ.NEXTVAL
+SELECT emp_seq.NEXTVAL
    FROM DUAL;
+   
+   
+   
+   
+create table lateStudent(
+	num number primary key,
+	name varchar2(30)
+)
 
+create sequence seq_late; -- 1부터 시작해서 1씩 커지는 시퀀스 생성
+
+insert into lateStudent values (seq_late.nextval,'이안수');
+insert into lateStudent values (seq_late.nextval,'lulu');
+insert into lateStudent values (seq_late.nextval,'');
+insert into lateStudent values (seq_late.nextval,'이안수');
+insert into lateStudent values (seq_late.nextval,'이안수');
+
+select * from lateStudent
 
