@@ -23,17 +23,24 @@ level은 오라클에서 실행되는
 where level < 4
 connect by manager_id =  prior employee_id and level <= 4
 */
- 
+
+select * from employees 
+
 select level, employee_id,lpad(' ',(level-1)*4)||first_name,
        manager_id
 from employees
+--where level<4
 start with manager_id is null
 connect by manager_id =  prior employee_id 
- 
+and level<4
 
 select employee_id, lpad(' ',(level-1)*4)||first_name,
        manager_id
 from employees
 start with first_name='John'
 connect by  prior manager_id =  employee_id 
+
+이름이 존부터 시작해서 매니저 108번으로 직원번호 108을 찾는다 상향식
+select * from employees where first_name = 'John'
+select * from employees where employee_id = 108
 

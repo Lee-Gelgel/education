@@ -2,6 +2,8 @@ package com.multi.study.jungol;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 //회의실이 하나 있다. 여러 회의들이 시작시간과 종료시간이 예약되어 있으며, 시간대가 겹치는 회의는 동시에 개최가 불가능하다. 
@@ -37,7 +39,6 @@ public class Jungol1370 {
 	public static void main(String[] args) throws FileNotFoundException {
 		System.setIn(new FileInputStream("src/com/multi/study/jungol/Jungol1370.txt"));
 		Scanner sc = new Scanner(System.in);
-
 		// 예약된 회의 수
 		int meetingReservationCnt = Integer.parseInt(sc.nextLine());
 		// 예약된 회의의 배열을 생성
@@ -51,6 +52,43 @@ public class Jungol1370 {
 				for (int j = 0; j < meetingReservation[i].length; j++) {
 					// 예약된 회의의 배열을 입력
 					meetingReservation[i][j] = Integer.parseInt(str[j]);
+				}
+			}
+
+			// 예약된 회의의 배열 정렬
+			for (int k = 0; k < meetingReservation.length - 1; k++) {
+				for (int i = 0; i < meetingReservation.length - 1; i++) {
+					int[] artTemp = new int[3];
+
+					// 시작시간 오름차순 정렬
+					if (meetingReservation[i][1] > meetingReservation[i + 1][1]) {
+						for (int j = 0; j < artTemp.length; j++) {
+							artTemp[j] = meetingReservation[i][j];
+						}
+						for (int j = 0; j < meetingReservation[i].length; j++) {
+							meetingReservation[i][j] = meetingReservation[i + 1][j];
+						}
+						for (int j = 0; j < meetingReservation[i].length; j++) {
+							meetingReservation[i + 1][j] = artTemp[j];
+						}
+					}
+
+					// 시작시간이 같을때 종료시간 오름차순 정렬
+					if (meetingReservation[i][1] == meetingReservation[i + 1][1]) {
+						for (int l = 0; l < meetingReservation.length - 1; l++) {
+							for (int m = 0; m < meetingReservation.length - 1; m++) {
+								for (int j = 0; j < artTemp.length; j++) {
+									artTemp[j] = meetingReservation[i][j];
+								}
+								for (int j = 0; j < meetingReservation[i].length; j++) {
+									meetingReservation[i][j] = meetingReservation[i + 1][j];
+								}
+								for (int j = 0; j < meetingReservation[i].length; j++) {
+									meetingReservation[i + 1][j] = artTemp[j];
+								}
+							}
+						}
+					}
 				}
 			}
 
