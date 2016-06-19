@@ -1,4 +1,4 @@
-package prob3;
+package com.multi.test.prob3;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -15,7 +15,7 @@ public class StudentCollection {
 	private static Vector<Student> makeStudentList() throws Exception {
 		// 구현하시오.
 		Vector<Student> stdList = new Vector<>();
-		String fileName = "src/prob3/scores.txt";
+		String fileName = "src/com/multi/test/prob3/scores.txt";
 		BufferedReader br = new BufferedReader(new FileReader(fileName));
 		String data;
 		while ((data = br.readLine()) != null) {

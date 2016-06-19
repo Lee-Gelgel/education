@@ -1,4 +1,4 @@
-package prob3;
+package com.multi.test.prob3;
 
 public class Student {
 	private String name;

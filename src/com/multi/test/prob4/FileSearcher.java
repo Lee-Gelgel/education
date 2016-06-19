@@ -1,4 +1,4 @@
-package prob4;
+package com.multi.test.prob4;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -17,7 +17,7 @@ public class FileSearcher {
 	private static Vector<String> printFileList(String extension) throws IOException {
 		// 구현하시오.
 		Vector<String> vector = new Vector<>();
-		String fileName = "src/prob4/logFiles.txt";
+		String fileName = "src/com/multi/test/prob4/logFiles.txt";
 		BufferedReader br = new BufferedReader(new FileReader(fileName));
 		String data;
 		while ((data = br.readLine()) != null) {

@@ -1,4 +1,4 @@
-package prob5;
+package com.multi.test.prob5;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class SQLSearcher {
 	public static void main(String[] args) throws IOException {
-		String fileName = "./src/prob5/sqlMaps.txt";
+		String fileName = "src/com/multi/test/prob5/sqlMaps.txt";
 		Map<String, String> sqlMap = makeSqlMap(fileName);
 		String sql = getSQL(sqlMap, "getBoardList");
 		System.out.println("검색된 SQL 문자열 : " + sql);

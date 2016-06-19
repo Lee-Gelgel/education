@@ -1,4 +1,4 @@
-package swExam2;
+package com.multi.test.swExam2;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -11,7 +11,7 @@ public class SDSsw_√—¿‚¿Ã {
 
 	public static void main(String[] args) throws FileNotFoundException {
 		long startTime = System.currentTimeMillis();
-		System.setIn(new FileInputStream("src/swExam2/input4_√—.txt"));
+		System.setIn(new FileInputStream("src/com/multi/test/swExam2/input4_√—.txt"));
 		checkCase();
 		long endTime = System.currentTimeMillis();
 		System.out.println("## º“ø‰Ω√∞£ : " + (endTime - startTime) / 1000.0f + "√ ");

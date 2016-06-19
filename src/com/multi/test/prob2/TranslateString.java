@@ -1,4 +1,4 @@
-package prob2;
+package com.multi.test.prob2;
 
 public class TranslateString {
 	public static void main(String[] args) {

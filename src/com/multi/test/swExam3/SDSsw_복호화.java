@@ -1,4 +1,4 @@
-package swExam3;
+package com.multi.test.swExam3;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class SDSsw_복호화 {
 	public static void main(String[] args) throws FileNotFoundException {
-		System.setIn(new FileInputStream("src/swExam3/input2_암호화.txt"));
+		System.setIn(new FileInputStream("src/com/multi/test/swExam3/input2_암호화.txt"));
 
 		Scanner sc = new Scanner(System.in);
 		int N = Integer.parseInt(sc.nextLine());

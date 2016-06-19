@@ -1,4 +1,4 @@
-package swExam;
+package com.multi.test.swExam;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -11,7 +11,7 @@ public class SDSsw_기지국 {
 
 	public static void main(String[] args) throws FileNotFoundException {
 		long startTime = System.currentTimeMillis();
-		System.setIn(new FileInputStream("src/swExam/input_기지국.txt"));
+		System.setIn(new FileInputStream("src/com/multi/test/swExam/input_기지국.txt"));
 		checkCase();
 		long endTime = System.currentTimeMillis();
 		System.out.println("## 소요시간 : " + (endTime - startTime) / 1000.0f + "초");

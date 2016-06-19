@@ -1,4 +1,4 @@
-package prob1;
+package com.multi.test.prob1;
 
 import java.util.Arrays;
 
